@@ -1,30 +1,41 @@
 name: UFT Automation Workflow
 
 on:
-  push:  # Trigger on any push to the repository
+  push:
     branches:
-      - main  # Specify the branch to monitor for pushes (e.g., "main")
-  schedule:  # Schedule to run the workflow at specific intervals
-    - cron: "0 0 * * *"  # Runs daily at midnight (UTC)
+      - main
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   run-uft-scripts:
-    runs-on: windows-latest  # UFT requires Windows runners
+    runs-on: windows-latest
 
     steps:
-      # Step 1: Check out the repository code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up the environment (e.g., install required dependencies)
       - name: Install Dependencies
         run: |
           echo "Setting up environment for UFT..."
+          # Add any commands to install dependencies here
+          # For example, if you need to install specific software, do it here
+          # Example: choco install <package-name> or any other installation commands
 
-      # Step 3: Run UFT automation scripts
+      - name: Debugging
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Listing files:"
+          dir
+          echo "Environment variables:"
+          set
+
       - name: Run UFT Automation Scripts
         run: |
           echo "Starting UFT automation scripts..."
-          # Replace with the actual command to execute UFT scripts
-          # Example: Invoke UFT via command-line or ALM (if applicable)
           C:\Users\80012664\Documents\AutomationProject\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
+          if ERRORLEVEL 1 (
+            echo "UFTBatchRun.bat failed with error code %ERRORLEVEL%"
+            exit /b %ERRORLEVEL%
+          )
