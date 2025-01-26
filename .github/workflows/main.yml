@@ -27,4 +27,4 @@ jobs:
           echo "Starting UFT automation scripts..."
           # Replace with the actual command to execute UFT scripts
           # Example: Invoke UFT via command-line or ALM (if applicable)
-          C:\path\to\uft\script\runner.exe /path/to/script
+          C:\Users\80012664\Documents\AutomationProject\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
