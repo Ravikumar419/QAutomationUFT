@@ -1,44 +1,30 @@
-name: UFT Automation Tests
+name: UFT Automation Workflow
 
 on:
-  push:
+  push:  # Trigger on any push to the repository
     branches:
-      - main
-  schedule:
-    - cron: "0 18 * * *" # Run at 8:00 AM every day (UTC)
+      - main  # Specify the branch to monitor for pushes (e.g., "main")
+  schedule:  # Schedule to run the workflow at specific intervals
+    - cron: "0 0 * * *"  # Runs daily at midnight (UTC)
 
 jobs:
-  run-uft-tests:
-    runs-on: windows-latest # UFT requires a Windows environment
+  run-uft-scripts:
+    runs-on: windows-latest  # UFT requires Windows runners
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Step 2: Set up dependencies (e.g., UFT runtime engine or tools)
-      - name: Set Up UFT Runtime Environment
+      # Step 2: Set up the environment (e.g., install required dependencies)
+      - name: Install Dependencies
         run: |
-          echo "Setting up UFT dependencies"
-          # Add commands to configure UFT if required
+          echo "Setting up environment for UFT..."
 
-      # Step 3: Execute UFT Tests
-      - name: Run UFT Tests
+      # Step 3: Run UFT automation scripts
+      - name: Run UFT Automation Scripts
         run: |
-          echo "Running UFT tests"
-          # Replace with the actual command to run your UFT tests
-          # Example:
-          # "C:\Users\80012664\Documents\Functional Testing\Etiqa" -run -testset <Path-to-TestSet>
-
-      # Step 4: Collect results (optional)
-      - name: Collect Test Results
-        run: |
-          echo "Collecting test results"
-          # Add any commands to archive or process results
-
-      # Step 5: Upload Test Results (optional)
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v3
-        with:
-          name: UFT-Test-Results
-          path: <path-to-results>
+          echo "Starting UFT automation scripts..."
+          # Replace with the actual command to execute UFT scripts
+          # Example: Invoke UFT via command-line or ALM (if applicable)
+          C:\path\to\uft\script\runner.exe /path/to/script
