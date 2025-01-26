@@ -1,0 +1,44 @@
+name: UFT Automation Tests
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "1 8 * * *" # Run at 8:00 AM every day (UTC)
+
+jobs:
+  run-uft-tests:
+    runs-on: windows-latest # UFT requires a Windows environment
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up dependencies (e.g., UFT runtime engine or tools)
+      - name: Set Up UFT Runtime Environment
+        run: |
+          echo "Setting up UFT dependencies"
+          # Add commands to configure UFT if required
+
+      # Step 3: Execute UFT Tests
+      - name: Run UFT Tests
+        run: |
+          echo "Running UFT tests"
+          # Replace with the actual command to run your UFT tests
+          # Example:
+          # "C:\Path\To\UFT\bin\uftbatchrunner.exe" -run -testset <Path-to-TestSet>
+
+      # Step 4: Collect results (optional)
+      - name: Collect Test Results
+        run: |
+          echo "Collecting test results"
+          # Add any commands to archive or process results
+
+      # Step 5: Upload Test Results (optional)
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: UFT-Test-Results
+          path: <path-to-results>
