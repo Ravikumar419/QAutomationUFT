@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "1 8 * * *" # Run at 8:00 AM every day (UTC)
+    - cron: "0 18 * * *" # Run at 8:00 AM every day (UTC)
 
 jobs:
   run-uft-tests:
@@ -28,7 +28,7 @@ jobs:
           echo "Running UFT tests"
           # Replace with the actual command to run your UFT tests
           # Example:
-          # "C:\Path\To\UFT\bin\uftbatchrunner.exe" -run -testset <Path-to-TestSet>
+          # "C:\Users\80012664\Documents\Functional Testing\Etiqa" -run -testset <Path-to-TestSet>
 
       # Step 4: Collect results (optional)
       - name: Collect Test Results
