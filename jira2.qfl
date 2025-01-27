@@ -1,2 +1,6 @@
 ﻿msgbox "Testt"
+<<<<<<< HEAD
 msgbox "test"
+=======
+msgbox "tester"
+>>>>>>> c64621f8d5d6ddfa94e17050b47798f80ebb22c4
