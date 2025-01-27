@@ -1,7 +1,7 @@
 ﻿
 ' Define variables
 Dim excelApp, excelWorkbook, excelSheet, defectID, lastRow
-
+Dim a
 ' Create an instance of Excel
 Set excelApp = CreateObject("Excel.Application")
 excelApp.Visible = True
