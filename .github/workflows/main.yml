@@ -34,7 +34,7 @@ jobs:
       - name: Run UFT Automation Scripts
         run: |
           echo "Starting UFT automation scripts..."
-          C:\Users\80012664\Documents\AutomationProject\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
+          UFTBatchRun.bat
           if ERRORLEVEL 1 (
             echo "UFTBatchRun.bat failed with error code %ERRORLEVEL%"
             exit /b %ERRORLEVEL%
