@@ -35,7 +35,7 @@ jobs:
       - name: List UFT Directory
         run: |
           echo "Listing UFT directory:"
-          D:\a\QAutomationUFT\QAutomationUFT\  # Ensure this path is correct
+          .\QAutomationUFT  # Ensure this path is correct
 
       - name: Run UFT Automation Scripts
         run: |
