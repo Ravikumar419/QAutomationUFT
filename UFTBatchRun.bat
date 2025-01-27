@@ -1,7 +1,7 @@
 @echo off
 SET UFT_PATH="C:\Program Files (x86)\OpenText\UFT One"
 SET TEST_PATH="C:\Users\80012664\Documents\AutomationProject\QAutomationUFT\QAutomationUFT\EtqJiraDefectMgt"
-
+cd C:\Users\80012664\Documents\AutomationProject\QAutomationUFT\QAutomationUFT
 echo Running UFTBatchRunnerCMD.exe... > UFTExecution.log
 %UFT_PATH%\bin\UFTBatchRunnerCMD.exe -source %TEST_PATH% >> UFTExecution.log 2>&1
 IF ERRORLEVEL 1 (
