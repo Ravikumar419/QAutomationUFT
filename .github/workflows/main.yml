@@ -40,7 +40,7 @@ jobs:
       - name: Run UFT Automation Scripts
         run: |
           echo "Starting UFT automation scripts..."
-          .\QAutomationUFT\UFTBatchRun.bat
+          .\UFTBatchRun.bat
           if ($LASTEXITCODE -ne 0) {
             echo "UFTBatchRun.bat failed with error code $LASTEXITCODE"
             exit $LASTEXITCODE
