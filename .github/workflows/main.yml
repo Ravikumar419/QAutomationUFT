@@ -5,45 +5,55 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
 
 jobs:
   run-uft-scripts:
     runs-on: windows-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Install Dependencies (if required)
       - name: Install Dependencies
         run: |
           echo "Setting up environment for UFT..."
-          # Add any commands to install dependencies here
+          # Add any commands to install dependencies if required
+          # Example:
+          # choco install -y some-dependency
 
-      - name: Debugging
+      # Step 3: Debug Current Directory and Environment
+      - name: Debug Current Directory
         run: |
-          echo "Current directory:"
+          echo "Current working directory is:"
           pwd
-          echo "Listing files:"
+          echo "Listing files in the current directory:"
           dir
           echo "Environment variables:"
           Get-ChildItem Env:
 
+      # Step 4: List Root Directory
       - name: List Root Directory
         run: |
-          echo "Listing root directory:"
-          dir  # This will help you see the structure after checkout
+          echo "Listing root directory after checkout:"
+          dir D:\a\QAutomationUFT\
 
+      # Step 5: List UFT Directory
       - name: List UFT Directory
         run: |
-          echo "Listing UFT directory:"
-          dir .\QAutomationUFT  # Ensure this path is correct based on the output of the previous step
+          echo "Listing files in the UFT directory:"
+          dir D:\a\QAutomationUFT\QAutomationUFT\
+        continue-on-error: true  # Allow debugging even if the directory doesn't exist
 
+      # Step 6: Run UFT Automation Scripts
       - name: Run UFT Automation Scripts
         run: |
           echo "Starting UFT automation scripts..."
-          .\QAutomationUFT\UFTBatchRun.bat  # Ensure the path to the batch file is correct
-          if ($LASTEXITCODE -ne 0) {
-            echo "UFTBatchRun.bat failed with error code $LASTEXITCODE"
-            exit $LASTEXITCODE
+          if (Test-Path "D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat") {
+            D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
+          } else {
+            echo "Error: UFTBatchRun.bat not found in the expected directory."
+            exit 1
           }
