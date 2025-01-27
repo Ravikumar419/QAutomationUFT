@@ -49,11 +49,15 @@ jobs:
 
       # Step 6: Run UFT Automation Scripts
       - name: Run UFT Automation Scripts
-        run: |
-          echo "Starting UFT automation scripts..."
-          if (Test-Path "D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat") {
-            D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
-          } else {
-            echo "Error: UFTBatchRun.bat not found in the expected directory."
-            exit 1
-          }
+  run: |
+    echo "Starting UFT automation scripts..."
+    if (Test-Path "D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat") {
+      D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
+      if ($LASTEXITCODE -ne 0) {
+        echo "UFTBatchRun.bat failed with error code $LASTEXITCODE"
+        exit $LASTEXITCODE
+      }
+    } else {
+      echo "Error: UFTBatchRun.bat not found in the expected directory."
+      exit 1
+    }
