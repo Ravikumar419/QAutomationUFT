@@ -30,7 +30,7 @@ jobs:
           dir
           echo "Environment variables:"
           #Get-ChildItem Env:
-          set
+          set -Name "MyVariable" -Value "Hello, World!"
 
       - name: List UFT Directory
         run: |
