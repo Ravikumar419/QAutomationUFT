@@ -12,18 +12,35 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: List Files in QAutomationUFT Directory
+      - name: Install Dependencies
         run: |
-          echo "Listing files in the QAutomationUFT directory:"
-          dir .\QAutomationUFT
+          echo "Setting up environment for UFT..."
+          # Add any commands to install dependencies here
+          # For example, if you need to install specific software, do it here
+          # Example: choco install <package-name> or any other installation commands
+
+      - name: Debugging
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Listing files:"
+          dir
+          echo "Environment variables:"
+          #Get-ChildItem Env:
+          set
+
+      - name: List UFT Directory
+        run: |
+          echo "Listing UFT directory:"
+          dir .\QAutomationUFT  # Ensure this path is correct
 
       - name: Run UFT Automation Scripts
         run: |
           echo "Starting UFT automation scripts..."
-          .\QAutomationUFT\UFTBatchRun.bat
+          .\UFTBatchRun.bat  # Ensure the path to the batch file is correct
           if ($LASTEXITCODE -ne 0) {
             echo "UFTBatchRun.bat failed with error code $LASTEXITCODE"
             exit $LASTEXITCODE
