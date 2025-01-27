@@ -19,8 +19,6 @@ jobs:
         run: |
           echo "Setting up environment for UFT..."
           # Add any commands to install dependencies here
-          # For example, if you need to install specific software, do it here
-          # Example: choco install <package-name> or any other installation commands
 
       - name: Debugging
         run: |
@@ -29,18 +27,22 @@ jobs:
           echo "Listing files:"
           dir
           echo "Environment variables:"
-          #Get-ChildItem Env:
-          set -Name "MyVariable" -Value "Hello, World!"
+          Get-ChildItem Env:
+
+      - name: List Root Directory
+        run: |
+          echo "Listing root directory:"
+          dir  # This will help you see the structure after checkout
 
       - name: List UFT Directory
         run: |
           echo "Listing UFT directory:"
-          .\QAutomationUFT  # Ensure this path is correct
+          dir .\QAutomationUFT  # Ensure this path is correct based on the output of the previous step
 
       - name: Run UFT Automation Scripts
         run: |
           echo "Starting UFT automation scripts..."
-          .\UFTBatchRun.bat  # Ensure the path to the batch file is correct
+          .\QAutomationUFT\UFTBatchRun.bat  # Ensure the path to the batch file is correct
           if ($LASTEXITCODE -ne 0) {
             echo "UFTBatchRun.bat failed with error code $LASTEXITCODE"
             exit $LASTEXITCODE
