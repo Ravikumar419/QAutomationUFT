@@ -29,7 +29,7 @@ jobs:
           echo "Listing files:"
           dir
           echo "Environment variables:"
-          set
+          Get-ChildItem Env:
 
       - name: Run UFT Automation Scripts
         run: |
