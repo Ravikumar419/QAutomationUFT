@@ -9,7 +9,7 @@ on:
 
 jobs:
   run-uft-scripts:
-    runs-on: runs-on: self-hosted, 
+    runs-on: self-hosted  # Corrected this line
 
     steps:
       # Step 1: Checkout repository
@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "Starting UFT automation scripts..."
           if (Test-Path "D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat") {
-            D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat
+            & "D:\a\QAutomationUFT\QAutomationUFT\UFTBatchRun.bat"  # Use & to call the batch file
           } else {
             echo "Error: UFTBatchRun.bat not found in the expected directory."
             exit 1
