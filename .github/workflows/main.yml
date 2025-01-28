@@ -9,7 +9,7 @@ on:
 
 jobs:
   run-uft-scripts:
-    runs-on: windows-latest
+    runs-on: runs-on: self-hosted, 
 
     steps:
       # Step 1: Checkout repository
